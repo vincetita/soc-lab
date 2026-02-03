@@ -1,0 +1,29 @@
+title: Web Enumeration Activity Detected
+id: 2c4e9b77-3333-4e88-aabb-webenum0001
+status: experimental
+description: Detects suspicious web directory enumeration behavior.
+author: SOC Lab
+date: 2026-02-03
+
+logsource:
+  category: network
+  product: zeek
+
+detection:
+  selection:
+    source.ip: 192.168.20.129
+    network.protocol: http
+    http.response.status_code:
+      - 403
+      - 404
+  condition: selection
+
+falsepositives:
+  - Vulnerability scanning
+  - Web crawlers
+
+level: medium
+
+tags:
+  - attack.discovery
+  - attack.t1595
