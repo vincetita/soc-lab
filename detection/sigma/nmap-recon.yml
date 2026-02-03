@@ -1,0 +1,29 @@
+title: Nmap Network Reconnaissance Detected
+id: 8a7f1a6c-1111-4c33-9a77-nmap0001
+status: experimental
+description: Detects potential Nmap-style network reconnaissance based on multiple destination ports from a single source.
+author: SOC Lab
+date: 2026-02-03
+
+logsource:
+  category: network
+  product: zeek
+
+detection:
+  selection:
+    source.ip: 192.168.20.129
+    destination.port:
+      - 22
+      - 80
+      - 443
+      - 9200
+  condition: selection
+
+falsepositives:
+  - Network administrators performing scans
+
+level: medium
+
+tags:
+  - attack.discovery
+  - attack.t1046
