@@ -18,3 +18,5 @@ Detect TCP SYN scanning behavior from Kali Linux.
 In SOC UI → Hunt → Network:
 
 Filter:
+
+source.ip == 192.168.20.129
