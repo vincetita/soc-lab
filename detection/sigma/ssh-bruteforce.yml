@@ -1,0 +1,26 @@
+title: SSH Brute Force Attempt Detected
+id: 5b9f2d44-2222-4c11-9caa-sshbf0001
+status: experimental
+description: Detects repeated SSH authentication failures indicating a brute-force attempt.
+author: SOC Lab
+date: 2026-02-03
+
+logsource:
+  category: authentication
+  product: linux
+
+detection:
+  selection:
+    destination.ip: 192.168.117.128
+    event.outcome: failure
+    network.protocol: ssh
+  condition: selection
+
+falsepositives:
+  - User mistyping password
+
+level: high
+
+tags:
+  - attack.credential_access
+  - attack.t1110
